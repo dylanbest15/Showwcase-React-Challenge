@@ -1,5 +1,6 @@
 import React from "react";
 import { History } from "history";
+import Input from "../../components/atoms/Input";
 import Button from "../../components/atoms/Button";
 
 interface HomeProps {
@@ -8,9 +9,12 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ history }) => {
 
+  const handleChange = (event : any) => {
+    console.log(event.target.value)
+  }
+
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log("hi");
     history.push("/education");
   }
 
@@ -23,7 +27,11 @@ const Home: React.FC<HomeProps> = ({ history }) => {
           <h4>Hi there! Welcome to your education showcase.</h4>
           <h4>Type your name and click "Enter" below to begin!</h4>
 
-          {/* input component */}
+          <Input 
+            onChange={handleChange}
+          />
+          
+          <br />
 
           <Button
             text={"Enter"}

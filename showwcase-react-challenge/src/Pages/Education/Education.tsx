@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 
-function Education() {
+const Education: React.FC = () => {
 
   const [schools, setSchools] = useState([]);
 
