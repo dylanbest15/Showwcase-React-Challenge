@@ -8,7 +8,9 @@ div.home-container {
 }
 
 input.home-input {
-  width: 16rem;
+  width: 18rem;
+  padding-top: 3px;
+  padding-bottom: 3px;
   padding-left: 10px;
   border: 1px solid gray;
   box-shadow: 2px 4px lightgray;

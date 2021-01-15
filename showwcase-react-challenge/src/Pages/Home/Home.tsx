@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { History } from "history";
-// import styled from "styled-components";
 import Button from "../../components/atoms/Button";
 import { saveUser } from "../../redux";
 import { useDispatch } from "react-redux";
@@ -22,8 +21,12 @@ const Home: React.FC<HomeProps> = ({ history }) => {
 
   function handleSubmit(event: any) {
     event.preventDefault();
-    dispatch(saveUser(userName));
-    history.push("/education");
+
+    // check for user input
+    if (userName) {
+      dispatch(saveUser(userName));
+      history.push("/education");
+    }
   }
 
   return (
@@ -33,11 +36,12 @@ const Home: React.FC<HomeProps> = ({ history }) => {
 
         <p>Hi there! Welcome to your education showcase.</p>
         <br />
-        
+
         <p>Type your name and click "Enter" below to begin!</p>
 
         <form className="form" onSubmit={handleSubmit}>
           <input className="home-input" type="text" placeholder="Your Name" onChange={handleChange} required />
+
           <Button text={"Enter"} onClick={handleSubmit} />
         </form>
 
