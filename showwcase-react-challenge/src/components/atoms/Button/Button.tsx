@@ -9,12 +9,11 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({ text, onClick }: ButtonProps) => {
 
   const Button = styled.button`
-  background: darkgray;
-  border-radius: 3px;
-  border: 2px solid gray;
+  background: lightgray;
+  border: 1px solid gray;
   color: black;
-  margin: 0 1em;
-  padding: 0.25em 1em;
+  padding: 3px;
+  width: 8rem;
 `
 
   return (

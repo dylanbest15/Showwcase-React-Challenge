@@ -1,5 +1,6 @@
 import React from "react";
 import { History } from "history";
+import styled from "styled-components";
 import Input from "../../components/atoms/Input";
 import Button from "../../components/atoms/Button";
 
@@ -8,6 +9,14 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ history }) => {
+
+  const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  `
 
   const handleChange = (event : any) => {
     console.log(event.target.value)
@@ -21,24 +30,19 @@ const Home: React.FC<HomeProps> = ({ history }) => {
   return (
     <>
 
-      <h2>Home</h2>
+      <Container className="container">
 
-      <div className="container">
-          <h4>Hi there! Welcome to your education showcase.</h4>
-          <h4>Type your name and click "Enter" below to begin!</h4>
-
-          <Input 
-            onChange={handleChange}
-          />
-          
+          <p>Hi there! Welcome to your education showcase.</p>
           <br />
 
-          <Button
-            text={"Enter"}
-            onClick={handleSubmit}
-          />
+          <p>Type your name and click "Enter" below to begin!</p>
 
-      </div>
+          <Input placeholder={"Your Name"} onChange={handleChange} />
+          <br />
+
+          <Button text={"Enter"} onClick={handleSubmit} />
+
+      </Container>
 
     </>
   )
