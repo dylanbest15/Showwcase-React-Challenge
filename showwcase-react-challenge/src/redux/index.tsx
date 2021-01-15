@@ -1,1 +1,1 @@
-export * from "./schools/schoolsActions";
+export { saveUser } from "./user/userActions";

@@ -4,14 +4,14 @@ import Home from "./pages/Home";
 import Education from "./pages/Education";
 
 
-function AppRouter() {
+const AppRouter: React.FC = () => {
   return (
     <>
       <Router>
         <div className="App">
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path ="/education" component={Education} />
+            <Route path="/education" component={Education} />
           </Switch>
         </div>
       </Router>

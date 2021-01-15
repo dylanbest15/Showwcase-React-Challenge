@@ -1,0 +1,16 @@
+div.home-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+input.home-input {
+  width: 16rem;
+  padding-left: 10px;
+  border: 1px solid gray;
+  box-shadow: 2px 4px lightgray;
+  margin-bottom: 15px;
+}

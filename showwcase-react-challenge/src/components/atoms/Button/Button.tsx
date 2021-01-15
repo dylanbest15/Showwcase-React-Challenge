@@ -14,6 +14,8 @@ const Button: React.FC<ButtonProps> = ({ text, onClick }: ButtonProps) => {
   color: black;
   padding: 3px;
   width: 8rem;
+  margin: 0 auto;
+  display: block;
 `
 
   return (

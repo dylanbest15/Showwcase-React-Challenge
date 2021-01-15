@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { History } from "history";
-import styled from "styled-components";
-import Input from "../../components/atoms/Input";
+// import styled from "styled-components";
 import Button from "../../components/atoms/Button";
+import { saveUser } from "../../redux";
+import { useDispatch } from "react-redux";
+import "./index.css";
 
 interface HomeProps {
   history: History
@@ -10,39 +12,36 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ history }) => {
 
-  const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
-  `
+  const [userName, setUserName] = useState<string>("");
 
-  const handleChange = (event : any) => {
-    console.log(event.target.value)
+  const dispatch = useDispatch();
+
+  const handleChange = (event: any) => {
+    setUserName(event.target.value);
   }
 
-  const handleSubmit = (event: any) => {
+  function handleSubmit(event: any) {
     event.preventDefault();
+    dispatch(saveUser(userName));
     history.push("/education");
   }
 
   return (
     <>
 
-      <Container className="container">
+      <div className="container home-container">
 
-          <p>Hi there! Welcome to your education showcase.</p>
-          <br />
+        <p>Hi there! Welcome to your education showcase.</p>
+        <br />
+        
+        <p>Type your name and click "Enter" below to begin!</p>
 
-          <p>Type your name and click "Enter" below to begin!</p>
-
-          <Input placeholder={"Your Name"} onChange={handleChange} />
-          <br />
-
+        <form className="form" onSubmit={handleSubmit}>
+          <input className="home-input" type="text" placeholder="Your Name" onChange={handleChange} required />
           <Button text={"Enter"} onClick={handleSubmit} />
+        </form>
 
-      </Container>
+      </div>
 
     </>
   )
