@@ -3,7 +3,7 @@ import { History } from "history";
 import Button from "../../components/atoms/Button";
 import { saveUser } from "../../redux";
 import { useDispatch } from "react-redux";
-import "./index.css";
+import "../styles.css";
 
 interface HomeProps {
   history: History
@@ -42,7 +42,7 @@ const Home: React.FC<HomeProps> = ({ history }) => {
         <form className="form" onSubmit={handleSubmit}>
           <input className="home-input" type="text" placeholder="Your Name" onChange={handleChange} required />
 
-          <Button text={"Enter"} onClick={handleSubmit} />
+          <Button width="8rem" text={"Enter"} onClick={handleSubmit} />
         </form>
 
       </div>

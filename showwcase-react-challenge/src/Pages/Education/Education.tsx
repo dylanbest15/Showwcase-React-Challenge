@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Modal from "react-modal";
 import API from "../../utils/API";
+import Button from "../../components/atoms/Button";
+import Sidebar from "../../components/organisms/Sidebar";
+import InfoCard from "../../components/organisms/InfoCard";
+import "../styles.css";
 
 const customStyles = {
   content: {
@@ -44,10 +48,19 @@ const Education: React.FC = () => {
   return (
     <>
 
-      <div className="container">
+      <div className="container education-container">
 
         <p>Welcome to {userName}'s education page.</p>
-        <button onClick={openModal}>Add new education</button>
+        <Button width="12rem" text="Add new education" onClick={openModal}></Button>
+
+        <div className="row">
+          <div className="col-4">
+            <Sidebar />
+          </div>
+          <div className="col-8">
+            <InfoCard />
+          </div>
+        </div>
 
         <Modal
           isOpen={isModalOpen}
@@ -57,7 +70,7 @@ const Education: React.FC = () => {
         >
 
           <h4>New Education Modal</h4>
-          <button onClick={closeModal}>close</button>
+          <Button width="6rem" text="close" onClick={closeModal}></Button>
         </Modal>
 
       </div>

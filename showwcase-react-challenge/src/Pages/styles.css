@@ -1,10 +1,21 @@
-div.home-container {
+div.container {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+div.home-container {
   height: 90vh;
+}
+
+div.education-container {
+  height: 70vh;
+}
+
+div.row {
+  margin-top: 30px;
 }
 
 input.home-input {
