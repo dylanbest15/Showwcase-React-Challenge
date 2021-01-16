@@ -5,14 +5,18 @@ import API from "../../utils/API";
 import Button from "../../components/atoms/Button";
 import Sidebar from "../../components/organisms/Sidebar";
 import InfoCard from "../../components/organisms/InfoCard";
+import EducationForm from "../../components/molecules/educationForm";
 import "../styles.css";
 
 const customStyles = {
+  overlay: {
+    backgroundColor: 'gray'
+  },
   content: {
-    top: '20%',
+    top: '10%',
     left: '20%',
     right: '20%',
-    bottom: '20%'
+    height: '500px'
   }
 }
 
@@ -33,9 +37,9 @@ const Education: React.FC = () => {
 
   useEffect(() => {
     console.log(userName);
-    API.getSchools("")
+    API.getSchools()
       .then((schools: any) => {
-        console.log(schools.map((schools: any) => schools.name));
+        setSchools(schools.map((schools: any) => schools.name));
       })
   }, [])
 
@@ -54,6 +58,7 @@ const Education: React.FC = () => {
 
         <p>Welcome to {userName}'s education page.</p>
         <Button width="12rem" text="Add new education" onClick={openModal}></Button>
+        <br />
 
         <div className="row">
           <div className="col-4">
@@ -71,8 +76,14 @@ const Education: React.FC = () => {
           contentLabel="Education Modal"
         >
 
-          <h4>New Education Modal</h4>
-          <Button width="6rem" text="close" onClick={closeModal}></Button>
+          <Button modal={true} width="4rem" text="back" onClick={closeModal}></Button>
+          <h4>Add New Education</h4>
+          <br />
+
+          <EducationForm />
+
+
+
         </Modal>
 
       </div>

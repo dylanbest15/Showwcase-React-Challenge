@@ -15,11 +15,11 @@ const Home: React.FC<HomeProps> = ({ history }) => {
 
   const dispatch = useDispatch();
 
-  const handleChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setUserName(event.target.value);
   }
 
-  function handleSubmit(event: any) {
+  function handleFormSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 
     // check for user input
@@ -39,10 +39,10 @@ const Home: React.FC<HomeProps> = ({ history }) => {
 
         <p>Type your name and click "Enter" below to begin!</p>
 
-        <form className="form" onSubmit={handleSubmit}>
-          <input className="home-input" type="text" placeholder="Your Name" onChange={handleChange} required />
+        <form className="form" onSubmit={handleFormSubmit}>
+          <input className="form-control home-input" type="text" placeholder="Your Name" onChange={handleInputChange} required />
 
-          <Button width="8rem" text={"Enter"} onClick={handleSubmit} />
+          <Button width="8rem" text={"Enter"} />
         </form>
 
       </div>

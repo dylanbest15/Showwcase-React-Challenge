@@ -4,10 +4,11 @@ import styled from "styled-components";
 interface ButtonProps {
   width?: string;
   text: string;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
+  modal?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ width, text, onClick }: ButtonProps) => {
+const Button: React.FC<ButtonProps> = ({ width, text, onClick, modal }: ButtonProps) => {
 
   const Button = styled.button`
   background: lightgray;
@@ -16,7 +17,11 @@ const Button: React.FC<ButtonProps> = ({ width, text, onClick }: ButtonProps) =>
   padding: 3px;
   margin: 0 auto;
   display: block;
-  width: ${width}
+  width: ${width};
+  
+  ${props => modal ? `
+  float: right;
+  ` : null}
 `
 
   return (
