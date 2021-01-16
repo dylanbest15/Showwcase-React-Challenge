@@ -28,20 +28,30 @@ interface user {
   }
 }
 
+interface education {
+  education: {
+    educations: Object[]
+  }
+}
+
 const Education: React.FC = () => {
 
   const userName: string = useSelector((state: user): string => { return state.user.userName });
+  const educations: Object[] = useSelector((state: education): Object[] => {return state.education.educations});
 
   const [schools, setSchools] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(userName);
     API.getSchools()
       .then((schools: any) => {
         setSchools(schools.map((schools: any) => schools.name));
       })
   }, [])
+
+  useEffect(() => {
+    closeModal();
+  }, [educations])
 
   function openModal() {
     setIsModalOpen(true);
@@ -81,8 +91,6 @@ const Education: React.FC = () => {
           <br />
 
           <EducationForm />
-
-
 
         </Modal>
 

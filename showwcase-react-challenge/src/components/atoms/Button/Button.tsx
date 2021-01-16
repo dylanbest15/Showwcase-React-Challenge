@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({ width, text, onClick, modal }: ButtonPr
   return (
     <>
 
-      <Button type={"submit"} onClick={onClick}>{text}</Button>
+      <Button className="btn" type="submit" onClick={onClick}>{text}</Button>
 
     </>
   )

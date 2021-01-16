@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Button from "../atoms/Button";
+import { addEducation } from "../../redux";
+import { useDispatch } from "react-redux";
 
-const ModalContent: React.FC = () => {
+const EducationForm: React.FC = () => {
 
   const [education, setEducation] = useState<Object>({
     name: "",
@@ -11,6 +13,8 @@ const ModalContent: React.FC = () => {
     end: 0,
     description: ""
   })
+
+  const dispatch = useDispatch();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setEducation({
@@ -29,6 +33,7 @@ const ModalContent: React.FC = () => {
   function handleFormSubmit(event : React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     console.log(education);
+    dispatch(addEducation(education));
   } 
 
   return (
@@ -118,4 +123,4 @@ const ModalContent: React.FC = () => {
   )
 }
 
-export default ModalContent;
+export default EducationForm;
