@@ -19,12 +19,14 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 interface user {
-  userName: string
+  user: {
+    userName: string
+  }
 }
 
 const Education: React.FC = () => {
 
-  const userName: string = useSelector((state: user): string => { return state.userName });
+  const userName: string = useSelector((state: user): string => { return state.user.userName });
 
   const [schools, setSchools] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
