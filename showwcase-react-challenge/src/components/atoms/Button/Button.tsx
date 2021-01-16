@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({ width, text, onClick, modal }: ButtonPr
   display: block;
   width: ${width};
   
-  ${props => modal ? `
+  ${modal ? `
   float: right;
   ` : null}
 `

@@ -30,11 +30,11 @@ const EducationForm: React.FC = () => {
     })
   }
 
-  function handleFormSubmit(event : React.FormEvent<HTMLFormElement>): void {
+  function handleFormSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     console.log(education);
     dispatch(addEducation(education));
-  } 
+  }
 
   return (
     <>
@@ -61,7 +61,7 @@ const EducationForm: React.FC = () => {
                 type="text"
                 name="degree"
                 className="form-control"
-                placeholder="Degree *"
+                placeholder="Degree (Bachelor's, Master's, PHD, etc.) *"
                 onChange={handleInputChange}
                 required
               />
@@ -99,7 +99,7 @@ const EducationForm: React.FC = () => {
                 type="text"
                 name="end"
                 className="form-control"
-                placeholder="End Year (or Expected) *"
+                placeholder="End Year (or expected if currently enrolled) *"
                 onChange={handleInputChange}
                 required
               />
@@ -109,7 +109,12 @@ const EducationForm: React.FC = () => {
         <div className="row justify-content-center">
           <div className="col-12 col-md-10">
             <div className="form-group">
-              <textarea name="description" className="form-control" placeholder="Description" onChange={handleDescriptionChange}></textarea>
+              <textarea 
+                name="description" 
+                className="form-control"
+                maxLength = {450}
+                placeholder="Description - briefly talk about minor degrees, extra-curriculars, and achievements here." 
+                onChange={handleDescriptionChange}></textarea>
             </div>
           </div>
         </div>

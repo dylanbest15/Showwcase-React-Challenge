@@ -41,7 +41,9 @@ const Education: React.FC = () => {
 
   const [schools, setSchools] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [currentEdu, setCurrentEdu] = useState<Object>({});
 
+  // make api call to server on load
   useEffect(() => {
     API.getSchools()
       .then((schools: any) => {
@@ -49,7 +51,9 @@ const Education: React.FC = () => {
       })
   }, [])
 
+  // set displayed education to most recently added
   useEffect(() => {
+    setCurrentEdu(educations[educations.length -1]);
     closeModal();
   }, [educations])
 
@@ -75,7 +79,7 @@ const Education: React.FC = () => {
             <Sidebar />
           </div>
           <div className="col-8">
-            <InfoCard />
+            <InfoCard education={currentEdu} />
           </div>
         </div>
 

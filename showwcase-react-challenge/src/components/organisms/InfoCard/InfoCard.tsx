@@ -1,18 +1,46 @@
 import React from "react";
+import styled from "styled-components";
 
-const InfoCard: React.FC = () => {
+interface InfoCardProps {
+  education: any;
+}
+
+const InfoCard: React.FC<InfoCardProps> = ({ education }: InfoCardProps) => {
+
+  const InfoCard = styled.div`
+  min-height: 300px;
+  background-color: lightgray;
+  max-width: 620px;
+
+  ${!education ? `
+  text-align: center;
+  padding-top: 100px;
+  ` : null}
+`
+  
+
   return (
     <>
 
-      <div className="card">
+      <InfoCard className="card">
         <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" className="card-link">Card link</a>
-          <a href="#" className="card-link">Another link</a>
+
+          {education ?
+            <>
+
+              <h5 className="card-title">{education.degree} in {education.field} @ {education.name}</h5>
+              <h6 className="card-subtitle mb-2 text-muted">{education.start} - {education.end}</h6>
+              <br />
+
+              <p className="card-text">{education.description}</p>
+
+            </> 
+            : <p>No educations added.</p>}
+
+
+
         </div>
-      </div>
+      </InfoCard>
 
     </>
   )
