@@ -5,7 +5,7 @@ import API from "../../utils/API";
 import Button from "../../components/atoms/Button";
 import Sidebar from "../../components/organisms/Sidebar";
 import InfoCard from "../../components/organisms/InfoCard";
-import EducationForm from "../../components/molecules/educationForm";
+import EduForm from "../../components/molecules/EduForm";
 import "../styles.css";
 
 const customStyles = {
@@ -16,7 +16,7 @@ const customStyles = {
     top: '10%',
     left: '20%',
     right: '20%',
-    height: '500px'
+    height: '650px'
   }
 }
 
@@ -94,7 +94,7 @@ const Education: React.FC = () => {
           <h4>Add New Education</h4>
           <br />
 
-          <EducationForm />
+          <EduForm suggestions={schools}/>
 
         </Modal>
 

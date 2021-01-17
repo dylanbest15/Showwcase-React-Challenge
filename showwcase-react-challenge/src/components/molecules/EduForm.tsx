@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../atoms/Button";
 import { addEducation } from "../../redux";
 import { useDispatch } from "react-redux";
 
-const EducationForm: React.FC = () => {
+interface EduFormProps {
+  suggestions: string[];
+}
+
+const EduForm: React.FC<EduFormProps> = ({ suggestions }: EduFormProps) => {
 
   const [education, setEducation] = useState<Object>({
     name: "",
@@ -14,7 +18,27 @@ const EducationForm: React.FC = () => {
     description: ""
   })
 
+  const [eduSelected, setEduSelected] = useState<boolean>(false);
+  const [eduInput, setEduInput] = useState<string>("");
+  const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
+
   const dispatch = useDispatch();
+
+  const handleEducationChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setFilteredSuggestions(suggestions.filter(suggestions =>
+      suggestions.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1
+    ))
+  }
+
+  const handleEducationClick = (event: any): void => {
+    setEduSelected(true);
+    setEduInput(event.target.value);
+    setEducation({
+      ...education,
+      name: event.target.value
+    })
+    setFilteredSuggestions([]);
+  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setEducation({
@@ -32,7 +56,6 @@ const EducationForm: React.FC = () => {
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-    console.log(education);
     dispatch(addEducation(education));
   }
 
@@ -43,14 +66,35 @@ const EducationForm: React.FC = () => {
         <div className="row justify-content-center">
           <div className="col-12 col-md-10">
             <div className="form-group">
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                placeholder="Name of School *"
-                onChange={handleInputChange}
-                required
-              />
+
+              {!eduSelected ?
+                <input
+                  type="text"
+                  name="name"
+                  className="form-control"
+                  placeholder="Name of School *"
+                  autoComplete="off"
+                  onChange={handleEducationChange}
+                  required
+                />
+                : <input
+                  type="text"
+                  name="name"
+                  value={eduInput}
+                  className="form-control"
+                  onChange={handleEducationChange}
+                  disabled required
+                />}
+
+
+              {filteredSuggestions ?
+                filteredSuggestions.slice(0, 8).map(suggestion =>
+
+                  <button className="btn" value={suggestion} onClick={handleEducationClick}>{suggestion}</button>
+
+                )
+                : null}
+
             </div>
           </div>
         </div>
@@ -109,11 +153,11 @@ const EducationForm: React.FC = () => {
         <div className="row justify-content-center">
           <div className="col-12 col-md-10">
             <div className="form-group">
-              <textarea 
-                name="description" 
+              <textarea
+                name="description"
                 className="form-control"
-                maxLength = {450}
-                placeholder="Description - briefly talk about minor degrees, extra-curriculars, and achievements here." 
+                maxLength={450}
+                placeholder="Description - briefly talk about minor degrees, extra-curriculars, and achievements here."
                 onChange={handleDescriptionChange}></textarea>
             </div>
           </div>
@@ -128,4 +172,4 @@ const EducationForm: React.FC = () => {
   )
 }
 
-export default EducationForm;
+export default EduForm;
