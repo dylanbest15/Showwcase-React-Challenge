@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Button from "../atoms/Button";
-import { addEducation } from "../../redux";
+import React, { useState } from "react";
+import Button from "../../atoms/Button";
+import { addEducation } from "../../../redux";
 import { useDispatch } from "react-redux";
 
 interface EduFormProps {
@@ -18,18 +18,22 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions }: EduFormProps) => {
     description: ""
   })
 
+  // states used for autocomplete
   const [eduSelected, setEduSelected] = useState<boolean>(false);
   const [eduInput, setEduInput] = useState<string>("");
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
 
   const dispatch = useDispatch();
 
+  // two event handlers for dealing with autocomplete
+  // filters array passed from api call using user's search input
   const handleEducationChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setFilteredSuggestions(suggestions.filter(suggestions =>
       suggestions.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1
     ))
   }
 
+  // handles user's selection of a suggestion button
   const handleEducationClick = (event: any): void => {
     setEduSelected(true);
     setEduInput(event.target.value);
@@ -40,6 +44,7 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions }: EduFormProps) => {
     setFilteredSuggestions([]);
   }
 
+  // uses event target name to update correct state property
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setEducation({
       ...education,
@@ -47,6 +52,7 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions }: EduFormProps) => {
     })
   }
 
+  // textarea event handler
   const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setEducation({
       ...education,
@@ -54,11 +60,14 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions }: EduFormProps) => {
     })
   }
 
+  // form submit
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     dispatch(addEducation(education));
   }
 
+  // a couple ternary functions in here to help with the autocomplete functionality
+  // bootstrap grid layout for mobile formatting
   return (
     <>
 
@@ -86,11 +95,16 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions }: EduFormProps) => {
                   disabled required
                 />}
 
-
               {filteredSuggestions ?
                 filteredSuggestions.slice(0, 8).map(suggestion =>
 
-                  <button className="btn" value={suggestion} onClick={handleEducationClick}>{suggestion}</button>
+                  <button
+                    key={suggestion}
+                    className="btn suggestion-button"
+                    value={suggestion}
+                    onClick={handleEducationClick}>
+                    {suggestion}
+                  </button>
 
                 )
                 : null}
@@ -105,7 +119,7 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions }: EduFormProps) => {
                 type="text"
                 name="degree"
                 className="form-control"
-                placeholder="Degree (Bachelor's, Master's, PHD, etc.) *"
+                placeholder="Degree *"
                 onChange={handleInputChange}
                 required
               />
@@ -143,7 +157,7 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions }: EduFormProps) => {
                 type="text"
                 name="end"
                 className="form-control"
-                placeholder="End Year (or expected if currently enrolled) *"
+                placeholder="End Year (or Expected)*"
                 onChange={handleInputChange}
                 required
               />
@@ -157,7 +171,7 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions }: EduFormProps) => {
                 name="description"
                 className="form-control"
                 maxLength={450}
-                placeholder="Description - briefly talk about minor degrees, extra-curriculars, and achievements here."
+                placeholder="Description - talk about minor degrees, extra-curriculars, and achievements here."
                 onChange={handleDescriptionChange}></textarea>
             </div>
           </div>

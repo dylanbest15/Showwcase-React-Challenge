@@ -17,7 +17,6 @@ const InfoCard: React.FC<InfoCardProps> = ({ education }: InfoCardProps) => {
   padding-top: 100px;
   ` : null}
 `
-  
 
   return (
     <>
@@ -28,16 +27,15 @@ const InfoCard: React.FC<InfoCardProps> = ({ education }: InfoCardProps) => {
           {education ?
             <>
 
-              <h5 className="card-title">{education.degree} in {education.field} @ {education.name}</h5>
+              <h4 className="card-title">{education.name}</h4>
+              <h5 className="card-subtitle mb-2 text-muted">{education.degree} in {education.field}</h5>
               <h6 className="card-subtitle mb-2 text-muted">{education.start} - {education.end}</h6>
               <br />
 
               <p className="card-text">{education.description}</p>
 
-            </> 
+            </>
             : <p>No educations added.</p>}
-
-
 
         </div>
       </InfoCard>

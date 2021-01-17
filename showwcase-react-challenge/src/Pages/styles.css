@@ -1,3 +1,4 @@
+/* containers */
 div.container {
   position: relative;
   display: flex;
@@ -8,12 +9,14 @@ div.container {
 
 div.home-container {
   height: 90vh;
+  text-align: center;
 }
 
 div.education-container {
-  height: 70vh;
+  height: 90vh;
 }
 
+/* home page */
 input.home-input {
   width: 18rem;
   padding-top: 3px;
@@ -24,20 +27,42 @@ input.home-input {
   margin-bottom: 15px;
 }
 
+/* education modal */
 form.modal-form input {
   height: 40px;
 }
 
 textarea { 
   width: auto; 
-  min-width:200px;  
+  min-width: 200px;  
   height: 150px; 
   min-height: 150px;  
   max-height: 150px;
 }
 
+button.suggestion-button {
+  font-size: 14px;
+  border: 1px solid gray;
+  margin-top: 20px;
+  margin-right: 10px;
+} 
+
+button.suggestion-button:hover {
+  background-color: lightgray;
+}
+
+/* media queries for mobile */
 @media screen and (max-width: 480px) {
   div.education-container {
-    height: 90vh;
+    height: 140vh;
+  }
+  textarea {
+    height: 100px;
+    min-height: 100px;
+    max-height: 100px;
+  }
+  button.suggestion-button {
+    font-size: 12px;
+    margin-top: 10px;
   }
 }

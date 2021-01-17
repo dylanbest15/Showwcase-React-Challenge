@@ -14,9 +14,9 @@ const customStyles = {
   },
   content: {
     top: '10%',
-    left: '20%',
-    right: '20%',
-    height: '650px'
+    left: '10%',
+    right: '10%',
+    bottom: '10%'
   }
 }
 
@@ -36,6 +36,7 @@ interface education {
 
 const Education: React.FC = () => {
 
+  // selector hooks for getting global state from redux
   const userName: string = useSelector((state: user): string => { return state.user.userName });
   const educations: Object[] = useSelector((state: education): Object[] => {return state.education.educations});
 
@@ -43,7 +44,7 @@ const Education: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [currentEdu, setCurrentEdu] = useState<Object>({});
 
-  // make api call to server on load
+  // make api call once and set state to increase performance
   useEffect(() => {
     API.getSchools()
       .then((schools: any) => {
@@ -57,6 +58,7 @@ const Education: React.FC = () => {
     closeModal();
   }, [educations])
 
+  // modal handlers
   function openModal() {
     setIsModalOpen(true);
   }
@@ -65,6 +67,7 @@ const Education: React.FC = () => {
     setIsModalOpen(false);
   }
 
+  // styled components with bootstrap grid layout
   return (
     <>
 
@@ -90,7 +93,7 @@ const Education: React.FC = () => {
           contentLabel="Education Modal"
         >
 
-          <Button modal={true} width="4rem" text="back" onClick={closeModal}></Button>
+          <Button modal={true} width="4rem" text="cancel" onClick={closeModal}></Button>
           <h4>Add New Education</h4>
           <br />
 

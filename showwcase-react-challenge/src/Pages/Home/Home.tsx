@@ -15,18 +15,16 @@ const Home: React.FC<HomeProps> = ({ history }) => {
 
   const dispatch = useDispatch();
 
+  // form handlers
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setUserName(event.target.value);
   }
 
+  // form submit with dispatch
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
-
-    // check for user input
-    if (userName) {
-      dispatch(saveUser(userName));
-      history.push("/education");
-    }
+    dispatch(saveUser(userName));
+    history.push("/education");
   }
 
   return (
