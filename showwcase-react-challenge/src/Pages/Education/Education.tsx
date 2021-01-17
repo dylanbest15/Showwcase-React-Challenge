@@ -43,6 +43,8 @@ const Education: React.FC = () => {
   const [schools, setSchools] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [currentEdu, setCurrentEdu] = useState<Object>({});
+  // counter to give index value to each education added
+  const [counter, setCounter] = useState<number>(0);
 
   // make api call once and set state to increase performance
   useEffect(() => {
@@ -65,6 +67,11 @@ const Education: React.FC = () => {
 
   function closeModal() {
     setIsModalOpen(false);
+  }
+
+  // handle counter after submit
+  function increaseCount() {
+    setCounter(counter + 1);
   }
 
   // styled components with bootstrap grid layout
@@ -97,7 +104,7 @@ const Education: React.FC = () => {
           <h4>Add New Education</h4>
           <br />
 
-          <EduForm suggestions={schools}/>
+          <EduForm suggestions={schools} counter={counter} increaseCount={increaseCount} />
 
         </Modal>
 

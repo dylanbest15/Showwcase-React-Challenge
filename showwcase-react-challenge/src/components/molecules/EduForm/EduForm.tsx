@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../atoms/Button";
 import { addEducation } from "../../../redux";
 import { useDispatch } from "react-redux";
 
 interface EduFormProps {
   suggestions: string[];
+  counter: number;
+  increaseCount: any;
 }
 
-const EduForm: React.FC<EduFormProps> = ({ suggestions }: EduFormProps) => {
+const EduForm: React.FC<EduFormProps> = ({ suggestions, counter, increaseCount }: EduFormProps) => {
 
   const [education, setEducation] = useState<Object>({
+    id: 0,
     name: "",
     degree: "",
     field: "",
     start: 0,
     end: 0,
-    description: ""
+    description: "",
   })
 
   // states used for autocomplete
@@ -24,6 +27,14 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions }: EduFormProps) => {
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
 
   const dispatch = useDispatch();
+
+  // whenever counter increases set next id
+  useEffect(() => {
+    setEducation({
+      ...education,
+      id: counter
+    })
+  }, [counter])
 
   // two event handlers for dealing with autocomplete
   // filters array passed from api call using user's search input
@@ -64,6 +75,7 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions }: EduFormProps) => {
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     dispatch(addEducation(education));
+    increaseCount();
   }
 
   // a couple ternary functions in here to help with the autocomplete functionality
