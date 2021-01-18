@@ -5,15 +5,16 @@ div.container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 50px;
 }
 
 div.home-container {
-  height: 90vh;
+  padding-top: 200px;
   text-align: center;
 }
 
 div.education-container {
-  height: 90vh;
+  padding-top: 80px;
 }
 
 /* home page */
@@ -28,6 +29,11 @@ input.home-input {
 }
 
 /* education page */
+h4.card-title {
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
 h6.sidepanel-text {
   margin-bottom: 3px;
 }
@@ -63,9 +69,6 @@ button.suggestion-button:hover {
 
 /* media queries for mobile */
 @media screen and (max-width: 480px) {
-  div.education-container {
-    height: 140vh;
-  }
   textarea {
     height: 100px;
     min-height: 100px;

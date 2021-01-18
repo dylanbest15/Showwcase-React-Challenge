@@ -8,11 +8,16 @@ interface InfoCardProps {
 const InfoCard: React.FC<InfoCardProps> = ({ education }: InfoCardProps) => {
 
   const InfoCard = styled.div`
-  min-height: 300px;
+  height: 300px;
   background-color: lightgray;
-  max-width: 620px;
+  width: 620px;
   overflow-y: auto;
-  overflow-y: scroll;
+  margin: auto;
+
+  @media (max-width: 480px) {
+    max-width: 350px;
+    margin: auto;
+  }
 
   ${!education ? `
   text-align: center;
@@ -24,24 +29,25 @@ const InfoCard: React.FC<InfoCardProps> = ({ education }: InfoCardProps) => {
   return (
     <>
 
-      <InfoCard className="card">
-        <div className="card-body">
+        <>
 
-          {education ?
-            <>
+          <InfoCard className="card">
+            <div className="card-body">
 
               <h4 className="card-title">{education.name}</h4>
               <h5 className="card-subtitle mb-2 text-muted">{education.degree} in {education.field}</h5>
               <h6 className="card-subtitle mb-2 text-muted">{education.start} - {education.end}</h6>
-              <br />
+
+              {education.grade ?
+                <h6 className="card-subtitle mb-2 text-muted">Grade: {education.grade}</h6>
+                : null}
 
               <p className="card-text">{education.description}</p>
 
-            </>
-            : <p>No educations added.</p>}
+            </div>
+          </InfoCard>
 
-        </div>
-      </InfoCard>
+        </>
 
     </>
   )

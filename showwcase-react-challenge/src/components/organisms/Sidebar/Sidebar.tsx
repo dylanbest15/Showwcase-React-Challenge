@@ -14,8 +14,16 @@ const Sidebar: React.FC<SidebarProps> = ({ educations, currentEdu, setCurrentEdu
   height: 300px;
   background-color: lightgray;
   overflow-y: auto;
-  overflow-y: scroll;
-  `
+  width: auto;
+
+  @media (max-width: 480px) {
+    width: auto;
+    height: auto;
+    margin-bottom: 20px;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+  }`
 
   // sort educations to show most recently added first
   const [eduSorted, setEduSorted] = useState<Object[]>([]);
@@ -31,8 +39,7 @@ const Sidebar: React.FC<SidebarProps> = ({ educations, currentEdu, setCurrentEdu
       <Sidebar className="card">
         <div className="card-body">
 
-          <h5 className="card-title">Education</h5>
-          <h6 className="card-subtitle mb-2 text-muted">Select to view more details</h6>
+          <h6 className="card-subtitle mb-2">Select to view more details</h6>
 
           {eduSorted.map((education: any) =>
 

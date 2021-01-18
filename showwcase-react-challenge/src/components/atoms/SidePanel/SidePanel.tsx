@@ -14,8 +14,12 @@ const SidePanel: React.FC<SidePanelProps> = ({ education, currentEdu, setCurrent
   width: 100%;
   text-align: left;
   background-color: white;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
   border-radius: 0px;
+
+  &:hover {
+    background-color: lightgreen;
+  }
 
   ${currentEdu.id === education.id ? `
   background-color: lightgreen;

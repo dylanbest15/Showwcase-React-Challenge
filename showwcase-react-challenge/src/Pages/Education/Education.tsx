@@ -45,12 +45,14 @@ const Education: React.FC = () => {
   const [currentEdu, setCurrentEdu] = useState<Object>({});
   // counter to give index value to each education added
   const [counter, setCounter] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
 
   // make api call once and set state to increase performance
   useEffect(() => {
     API.getSchools()
       .then((schools: any) => {
         setSchools(schools.map((schools: any) => schools.name));
+        setLoading(false);
       })
   }, [])
 
@@ -74,8 +76,8 @@ const Education: React.FC = () => {
     setCounter(counter + 1);
   }
 
-  // styled components with bootstrap grid layout
   // sidebar is only displayed if user has entered an education
+  // grid layout for mobile responsiveness
   return (
     <>
 
@@ -87,21 +89,18 @@ const Education: React.FC = () => {
 
         <div className="row">
 
-          {currentEdu ?
+          {currentEdu && !loading ?
             <>
 
-              <div className="col-6 col-md-4">
+              <div className="col-12 col-md-4">
                 <Sidebar educations={educations} currentEdu={currentEdu} setCurrentEdu={setCurrentEdu} />
               </div>
-              <div className="col-6 col-md-8">
+              <div className="col-12 col-md-8">
                 <InfoCard education={currentEdu} />
               </div>
 
-            </> :
-
-            <div className="col-12">
-              <InfoCard education={currentEdu} />
-            </div>}
+            </> 
+            : null}
 
         </div>
 

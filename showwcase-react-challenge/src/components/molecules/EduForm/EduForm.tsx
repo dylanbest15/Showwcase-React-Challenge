@@ -16,6 +16,7 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions, counter, increaseCount }
     name: "",
     degree: "",
     field: "",
+    grade: "",
     start: 0,
     end: 0,
     description: "",
@@ -42,6 +43,10 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions, counter, increaseCount }
     setFilteredSuggestions(suggestions.filter(suggestions =>
       suggestions.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1
     ))
+    setEducation({
+      ...education,
+      [event.target.name]: event.target.value
+    })
   }
 
   // handles user's selection of a suggestion button
@@ -79,7 +84,7 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions, counter, increaseCount }
   }
 
   // a couple ternary functions in here to help with the autocomplete functionality
-  // bootstrap grid layout for mobile formatting
+  // grid layout for mobile responsiveness
   return (
     <>
 
@@ -125,7 +130,7 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions, counter, increaseCount }
           </div>
         </div>
         <div className="row justify-content-center">
-          <div className="col-12 col-md-5">
+          <div className="col-12 col-md-4">
             <div className="form-group">
               <input
                 type="text"
@@ -137,7 +142,7 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions, counter, increaseCount }
               />
             </div>
           </div>
-          <div className="col-12 col-md-5">
+          <div className="col-12 col-md-4">
             <div className="form-group">
               <input
                 type="text"
@@ -146,6 +151,17 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions, counter, increaseCount }
                 placeholder="Field of Study *"
                 onChange={handleInputChange}
                 required
+              />
+            </div>
+          </div>
+          <div className="col-12 col-md-2">
+            <div className="form-group">
+              <input
+                type="text"
+                name="grade"
+                className="form-control"
+                placeholder="Grade"
+                onChange={handleInputChange}
               />
             </div>
           </div>
