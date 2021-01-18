@@ -182,7 +182,6 @@ const EduForm: React.FC<EduFormProps> = ({ suggestions, counter, increaseCount }
               <textarea
                 name="description"
                 className="form-control"
-                maxLength={450}
                 placeholder="Description - talk about minor degrees, extra-curriculars, and achievements here."
                 onChange={handleDescriptionChange}></textarea>
             </div>

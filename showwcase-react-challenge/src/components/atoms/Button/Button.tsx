@@ -18,6 +18,10 @@ const Button: React.FC<ButtonProps> = ({ width, text, onClick, modal }: ButtonPr
   margin: 0 auto;
   display: block;
   width: ${width};
+
+  &:hover {
+    background-color: darkgray;
+  }
   
   ${modal ? `
   float: right;

@@ -27,6 +27,16 @@ input.home-input {
   margin-bottom: 15px;
 }
 
+/* education page */
+h6.sidepanel-text {
+  margin-bottom: 3px;
+}
+
+p.sidepanel-text {
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+
 /* education modal */
 form.modal-form input {
   height: 40px;

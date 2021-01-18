@@ -1,18 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import SidePanel from "../../atoms/SidePanel";
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  educations: any;
+  currentEdu: any;
+  setCurrentEdu: any;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ educations, currentEdu, setCurrentEdu }: SidebarProps) => {
+
+  const Sidebar = styled.div`
+  height: 300px;
+  background-color: lightgray;
+  overflow-y: auto;
+  overflow-y: scroll;
+  `
+
+  // sort educations to show most recently added first
+  const [eduSorted, setEduSorted] = useState<Object[]>([]);
+
+  // slice to not mutate original array
+  useEffect(() => {
+    setEduSorted(educations.slice().reverse());
+  }, [educations])
+
   return (
     <>
 
-      <div className="card">
+      <Sidebar className="card">
         <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" className="card-link">Card link</a>
-          <a href="#" className="card-link">Another link</a>
+
+          <h5 className="card-title">Education</h5>
+          <h6 className="card-subtitle mb-2 text-muted">Select to view more details</h6>
+
+          {eduSorted.map((education: any) =>
+
+            <SidePanel 
+              education={education} 
+              currentEdu={currentEdu} 
+              setCurrentEdu={setCurrentEdu}
+              educationArray={educations}>
+            </SidePanel>
+
+          )}
+
         </div>
-      </div>
+      </Sidebar>
 
     </>
   )

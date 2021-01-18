@@ -38,7 +38,7 @@ const Education: React.FC = () => {
 
   // selector hooks for getting global state from redux
   const userName: string = useSelector((state: user): string => { return state.user.userName });
-  const educations: Object[] = useSelector((state: education): Object[] => {return state.education.educations});
+  const educations: Object[] = useSelector((state: education): Object[] => { return state.education.educations });
 
   const [schools, setSchools] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -56,7 +56,7 @@ const Education: React.FC = () => {
 
   // set displayed education to most recently added
   useEffect(() => {
-    setCurrentEdu(educations[educations.length -1]);
+    setCurrentEdu(educations[educations.length - 1]);
     closeModal();
   }, [educations])
 
@@ -75,6 +75,7 @@ const Education: React.FC = () => {
   }
 
   // styled components with bootstrap grid layout
+  // sidebar is only displayed if user has entered an education
   return (
     <>
 
@@ -85,13 +86,25 @@ const Education: React.FC = () => {
         <br />
 
         <div className="row">
-          <div className="col-4">
-            <Sidebar />
-          </div>
-          <div className="col-8">
-            <InfoCard education={currentEdu} />
-          </div>
+
+          {currentEdu ?
+            <>
+
+              <div className="col-6 col-md-4">
+                <Sidebar educations={educations} currentEdu={currentEdu} setCurrentEdu={setCurrentEdu} />
+              </div>
+              <div className="col-6 col-md-8">
+                <InfoCard education={currentEdu} />
+              </div>
+
+            </> :
+
+            <div className="col-12">
+              <InfoCard education={currentEdu} />
+            </div>}
+
         </div>
+
 
         <Modal
           isOpen={isModalOpen}

@@ -11,10 +11,13 @@ const InfoCard: React.FC<InfoCardProps> = ({ education }: InfoCardProps) => {
   min-height: 300px;
   background-color: lightgray;
   max-width: 620px;
+  overflow-y: auto;
+  overflow-y: scroll;
 
   ${!education ? `
   text-align: center;
   padding-top: 100px;
+  width: 450px;
   ` : null}
 `
 
