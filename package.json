@@ -2,7 +2,6 @@
   "name": "showwcase-react-challenge",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dylanbest15.github.io/Showwcase-React-Challenge",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
@@ -29,8 +28,6 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -56,7 +53,6 @@
   },
   "devDependencies": {
     "@types/react-redux": "^7.1.15",
-    "@types/styled-components": "^5.1.7",
-    "gh-pages": "^3.1.0"
+    "@types/styled-components": "^5.1.7"
   }
 }
